@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="LiteCRM.Views.DescktopViews"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LiteCRM.Views"
+             xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+             mc:Ignorable="d" 
+             d:DesignHeight="740" d:DesignWidth="1150">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Рабочий стол" Grid.Column="1" Margin="5,5,320,5" FontFamily="Calibri" FontSize="36" Grid.Row="0"/>
+        <DataGrid x:Name="ContractDelay" Grid.Column="2" Margin="5,42,0,0" Grid.Row="4" BorderBrush="#FFFFA200" BorderThickness="2" FontFamily="Calibri">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="namberContractDelay" Header="№ договора" MaxWidth="100" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="typeWorkDelay" Header="Вид работ" MaxWidth="100" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="nameOrgDelay" Header="Наименование организации" MaxWidth="300" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="dayOfDelay" Header="Дней просрочки" MaxWidth="100" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="dateEndContractDelay" Header="Дата окончания договора" MaxWidth="200" CanUserReorder="False" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="ContractInWork" Grid.Column="1" Margin="0,42,5,0" Grid.Row="4" BorderBrush="#FFFFA200" BorderThickness="2" FontFamily="Calibri">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="namberContractInWork" Header="№ договора" MaxWidth="250" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="typeWorkInWork" Header="Вид работ" MaxWidth="300" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="nameOrgInWork" Header="Наименование организации" MaxWidth="500" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="dateEndContractInWork" Header="Дата окончания договора" MaxWidth="200" CanUserReorder="False" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Договора в работе" Grid.Column="1" Margin="5,5,5,5" Grid.Row="4" 
+                   VerticalAlignment="Top" FontFamily="Calibri" FontSize="18" 
+                   Foreground="#FF1D910B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="Договора с истекшим сроком" Grid.Column="2" Margin="5,5,5,5" Grid.Row="4" 
+                VerticalAlignment="Top" FontFamily="Calibri" FontSize="18" 
+                Foreground="Red" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
+        <Grid Grid.Column="2" HorizontalAlignment="Left" Grid.Row="2" Width="560">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <WindowsFormsHost RenderTransformOrigin="5.633,10.733" IsEnabled="False" Grid.Column="1" Margin="5,5,5,5">
+                <dvc:Chart x:Name="Chart"/>
+            </WindowsFormsHost>
+            <WindowsFormsHost RenderTransformOrigin="5.633,10.733" IsEnabled="False" Grid.Column="1" Grid.Row="1" Margin="5,5,5,5">
+                <dvc:Chart x:Name="Chart1"/>
+            </WindowsFormsHost>
+            <TextBlock TextWrapping="Wrap" Text="Кол-во договоров выполненых по отношению к просроченным. Итоги года" TextAlignment="Center" Margin="20,28" FontFamily="Calibri" FontSize="18"/>
+            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Показатель выполнение плана по итогам года" TextAlignment="Center" Margin="47,40.5" FontFamily="Calibri" FontSize="18"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Добавить сотрудника" Margin="5,10,5,0" FontFamily="Calibri" FontSize="18" Height="30" VerticalAlignment="Top" Style="{DynamicResource DesctopButton}" BorderBrush="#FFFFA200" BorderThickness="3"/>
+            <Button Content="Установить план на год в руб." Margin="5,60,5,0" FontFamily="Calibri" FontSize="18" Height="30" VerticalAlignment="Top" Style="{DynamicResource DesctopButton}" BorderBrush="#FFFFA200" BorderThickness="3"/>
+            <Button Content="Распределение работы" Margin="5,110,5,0" FontFamily="Calibri" FontSize="18" Height="30" VerticalAlignment="Top" Style="{DynamicResource DesctopButton}" BorderBrush="#FFFFA200" BorderThickness="3"/>
+            <TextBox Grid.Column="1" Margin="5,60,5,160" TextWrapping="Wrap" BorderBrush="#FF68FF30" BorderThickness="2" Style="{DynamicResource NewTextBoxAddClient}" Padding="3" FontSize="14" TextAlignment="Right"/>
+            <TextBlock Grid.Column="1" Margin="5,10,5,0" TextWrapping="Wrap" Text="Добавление новых сотрудников" VerticalAlignment="Top" FontFamily="Calibri" FontSize="18" Height="30"/>
+            <TextBlock Grid.Column="1" Margin="5,102,5,0" TextWrapping="Wrap" Text="Распределение работы между сотрудникам" VerticalAlignment="Top" FontFamily="Calibri" FontSize="18" Height="45"/>
+        </Grid>
+    </Grid>
+</UserControl>

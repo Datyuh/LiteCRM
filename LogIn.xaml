@@ -1,0 +1,101 @@
+﻿<Window x:Class="LiteCRM.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LiteCRM"
+        xmlns:cmd="clr-namespace:LiteCRM.Infrastucture.Commands"
+        mc:Ignorable="d"
+        xmlns:viewmodels="clr-namespace:LiteCRM.ViewModels"
+        Title="LogIn" Height="280" Width="260" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel></viewmodels:MainWindowViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="Combobxbutton1" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Background" Value="#FF448899"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" CornerRadius="15" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="2,2,0,0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="PreviewMouseUp">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF25292A" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="3" BorderThickness="2" CornerRadius="15" Margin="156,147,0,0" Grid.ColumnSpan="3" Height="30" VerticalAlignment="Top">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="#FFFFA200"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#FFFD0000"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Button x:Name="GetIn" Style="{StaticResource Combobxbutton1}" Background="#FF555555" Click="GetIn_Click">
+                <Button.Content>
+                    <TextBlock Text="Вход" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri" FontSize="16"/>
+                </Button.Content>
+            </Button>
+        </Border>
+        <Rectangle Grid.Row="0" Fill="#FF1F1F1F" Grid.RowSpan="3" Grid.ColumnSpan="5" Grid.Column="0" />
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF68FF30" Grid.Row="3"
+               Grid.Column="0" Height="30" Width="57" FontFamily="Calibri"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.635,2.623" FontSize="18" Foreground="#FF68FF30" Grid.Row="3"
+               Grid.Column="0" Height="30" Width="66" FontFamily="Calibri"/>
+        <TextBlock Foreground="#FFFFA200" FontFamily="Segoe Print" FontSize="14" TextWrapping="Wrap" TextAlignment="Center" Background="#FF1F1F1F" Grid.ColumnSpan="5"
+                   Grid.Column="0" Margin="0,10,0,0"
+                   Grid.Row="0" Grid.RowSpan="3"><Run Foreground="#FF68FF30" FontSize="12" Text="Lite"/><Run FontSize="22" FontFamily="Calibri" Text="CRM"/></TextBlock>
+        <TextBlock Foreground="#FFB03D3D" FontFamily="Segoe Print" FontSize="24" VerticalAlignment="Top" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="3" Margin="0,10,0,0" Grid.ColumnSpan="4"
+                   Grid.Column="0" Height="35"><Run FontFamily="Calibri" Text="Авторизация"/></TextBlock>
+        <PasswordBox x:Name="PasswordText" TabIndex="2" Margin="83,97,0,0" Background="White" BorderBrush="#FFFFA200" Grid.Row="3" Foreground="Black" SelectionBrush="#FF486BE4" Grid.ColumnSpan="3"
+                     Grid.Column="0" Height="30" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" BorderThickness="2" Style="{DynamicResource PasswordBoxStyle}"  Padding="5"/>
+        <Rectangle Fill="#FF68FF30" Grid.Row="4" Grid.ColumnSpan="5" Grid.Column="0" />
+        <TextBox x:Name="LoginText" TabIndex="1" Margin="83,50,0,0" Grid.Row="3" TextWrapping="Wrap" BorderBrush="#FFFFA200" SelectionBrush="#FF486BE4" Grid.ColumnSpan="3"
+                 Grid.Column="0" Height="30" VerticalAlignment="Top" FontFamily="Calibri" BorderThickness="2" Style="{DynamicResource NewTextBoxAddClient}" Padding="5" FontSize="14"/>
+        <Button x:Name="Exit_LogIn" Content="x" Grid.Column="3" Background="#FF1F1F1F" Foreground="#FF999D9F" BorderBrush="#FF1F1F1F" Click="Exit_LogIn_Click"
+                Grid.Row="0" Grid.RowSpan="2" MouseEnter="Exit_MouseEnter" MouseLeave="Exit_MouseLeave" Margin="0,-2,-2,0" FontFamily="Calibri" FontSize="18" Style="{DynamicResource Exit_Batton}">
+            <Button.Command>
+                <cmd:CloseApplicationCommand />
+            </Button.Command>
+        </Button>
+        <Button x:Name="Drop_LogIn" Content="–" Background="#FF1F1F1F" Foreground="#FF999D9F" BorderBrush="#FF1F1F1F" Click="Drop_LogIn_Click"
+                Grid.Row="0" Grid.RowSpan="2" MouseEnter="Drop_MouseEnter" MouseLeave="Drop_MouseLeave" Margin="216,-2,0,0" Grid.ColumnSpan="2"
+                Grid.Column="0" FontFamily="Calibri" FontSize="18" Style="{DynamicResource Exit_Batton}"/>
+    </Grid>
+</Window>
