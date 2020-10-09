@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LiteCRM"
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="LiteCRM.App"
-             StartupUri="LogIn.xaml">
+             StartupUri="Views/Windows/LogIn.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Block_button_control.xaml"/>
+                <ResourceDictionary Source="Views/Resources/Block_button_control.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <SolidColorBrush x:Key="Button.Static.Background2" Color="#FFDDDDDD"/>
             <SolidColorBrush x:Key="Button.Static.Border2" Color="#FF707070"/>

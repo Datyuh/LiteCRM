@@ -1,5 +1,4 @@
 ﻿using LiteCRM.BaseWork.Context;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +9,7 @@ namespace LiteCRM.BaseWork
         ApplicationContext db = new ApplicationContext();
 
         public List<string> LogInUsers()
-        {           
+        {
             var logInUsers = db.Users.Select(p => p.Login).ToList();
             return logInUsers;
         }

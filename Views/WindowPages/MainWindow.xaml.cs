@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using LiteCRM.Views;
 
 
 namespace LiteCRM
@@ -11,16 +12,16 @@ namespace LiteCRM
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {        
+    {
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
             DataContext = new DescktopViewsModel();
 
             Dasktop.Background = Brushes.White;
             Deskbord.Foreground = Brushes.Black;
-            Tangle_Desktop.Fill = Brushes.Lime; 
+            Tangle_Desktop.Fill = Brushes.Lime;
         }
 
         private void Out_Click(object sender, RoutedEventArgs e)

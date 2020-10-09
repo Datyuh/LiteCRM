@@ -11,7 +11,7 @@ namespace LiteCRM.BaseWork
 
         int dt = DateTime.Now.Month;
         public List<int> IdToGrid()
-        {            
+        {
             var idToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.id).ToList();
             return idToGrid;
         }
@@ -71,10 +71,10 @@ namespace LiteCRM.BaseWork
             return statusConToGrid;
         }
         public List<DateTime> RegisterConToGrid()
-        {           
-            var registerConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p=>p.RegistrDate);
+        {
+            var registerConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.RegistrDate);
             return (List<DateTime>)registerConToGrid;
-        }      
+        }
 
     }
 }

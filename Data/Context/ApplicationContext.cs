@@ -8,21 +8,21 @@ namespace LiteCRM.BaseWork.Context
     {
         public DbSet<Users> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
-        
+
 
         public ApplicationContext()
         {
             try
             {
-               Database.OpenConnection();
-               //.EnsureCreated();
+                Database.OpenConnection();
+                //.EnsureCreated();
             }
             catch (System.Exception)
             {
                 Database.CloseConnection();
-                MessageBox.Show("База данных не доступна\nПроверте подключение", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);                
+                MessageBox.Show("База данных не доступна\nПроверте подключение", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using LiteCRM.BaseWork;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using LiteCRM.BaseWork;
 
-namespace LiteCRM
+namespace LiteCRM.Views
 {
     /// <summary>
     /// Логика взаимодействия для LogIn.xaml
@@ -15,21 +13,17 @@ namespace LiteCRM
     public partial class LogIn : Window
     {
         List<string> pass = new List<string>(new DbUsersRequest().PassUsers().AsParallel());
-        List<string> logIn = new List<string>(new DbUsersRequest().LogInUsers().AsParallel());        
+        List<string> logIn = new List<string>(new DbUsersRequest().LogInUsers().AsParallel());
         public LogIn()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
-        private void Exit_LogIn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
 
         private void Drop_LogIn_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
-        }      
+        }
 
         private void GetIn_Click(object sender, RoutedEventArgs e)
         {
@@ -40,10 +34,10 @@ namespace LiteCRM
             if (logIn.Contains(LoginUser) && pass.Contains(PassUser))
             {
                 MainWindow mainWindow = new MainWindow();
-                Close();                
-               
-                mainWindow.GetInUserRight(uRight);
-                mainWindow.Show();
+                Close();
+
+                //mainWindow.GetInUserRight(uRight);
+                //mainWindow.Show();
 
             }
 
@@ -80,6 +74,6 @@ namespace LiteCRM
         {
             Drop_LogIn.Background = new SolidColorBrush(Color.FromRgb(31, 31, 31));
             Drop_LogIn.Foreground = new SolidColorBrush(Color.FromRgb(153, 157, 159));
-        }         
+        }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using LiteCRM.Infrastucture.Commands.Base;
+﻿using LiteCRM.Infrastucture.Commands.Base;
+using System;
 
 namespace LiteCRM.Infrastucture.Commands
 {

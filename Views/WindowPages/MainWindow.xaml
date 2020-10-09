@@ -8,17 +8,17 @@
         xmlns:cmd="clr-namespace:LiteCRM.Infrastucture.Commands"
         mc:Ignorable="d"
         Title="" Height="800" Width="1400" WindowStartupLocation="CenterScreen" Background="#FF25292A" WindowStyle="None" ResizeMode="NoResize">
-    <!--<Window.DataContext>
+    <Window.DataContext>
         <viewmodels:MainWindowViewModel/>
-    </Window.DataContext>-->
+    </Window.DataContext>
     <Window.Resources>
-        <DataTemplate x:Name="Desktop_Window" DataType="{x:Type viewmodels:DescktopViewsModel}">
+        <DataTemplate DataType="{x:Type viewmodels:DescktopViewsModel}">
             <views:DescktopViews DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate x:Name="Add_Client_Window" DataType="{x:Type viewmodels:AddClientViewsModel}">
+        <DataTemplate DataType="{x:Type viewmodels:AddClientViewsModel}">
             <views:Add_Client DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate x:Name="Search_Contacts_Window" DataType="{x:Type viewmodels:SearchContactsModel}">
+        <DataTemplate DataType="{x:Type viewmodels:SearchContactsModel}">
             <views:SearchContacts DataContext="{Binding}"/>
         </DataTemplate>
         <Style x:Key="Combobxbutton" TargetType="Button">
@@ -125,10 +125,7 @@
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
-                <Button x:Name="Out" Style="{StaticResource Combobxbutton}" Background="#FF555555">
-                    <Button.Command>
-                        <cmd:CloseApplicationCommand />
-                    </Button.Command>
+                <Button x:Name="Out" Style="{StaticResource Combobxbutton}" Command="{Binding CloseApplicationCommand}" Background="#FF555555">
                     <Button.Content>
                         <TextBlock Text="Выход" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri" FontSize="16"/>
                     </Button.Content>
@@ -168,16 +165,14 @@
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="3"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="RollUp" Background="#FF1F1F1F" FontSize="18" Foreground="#FF999D9F" Click="RollUp_Click" BorderBrush="#FF1F1F1F" Style="{DynamicResource Exit_Batton}" Margin="1101,-2,0,0" Grid.RowSpan="2" MouseEnter="RollUp_MouseEnter" MouseLeave="RollUp_MouseLeave" Grid.ColumnSpan="2">
+            <Button x:Name="RollUp" Background="#FF1F1F1F" FontSize="18" Foreground="#FF999D9F" Click="RollUp_Click" BorderBrush="#FF1F1F1F" Style="{DynamicResource Exit_Batton}" 
+                    Command="{Binding MinimazeApplicationCommand}" Margin="1101,-2,0,0" Grid.RowSpan="2" MouseEnter="RollUp_MouseEnter" MouseLeave="RollUp_MouseLeave" Grid.ColumnSpan="2">
                 <Button.Content>
                     <TextBlock Text="–" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Height="20" Foreground="#FF999D9F" FontFamily="Calibri" FontSize="18" Width="24"/>
                 </Button.Content>
             </Button>
             <Button x:Name="Exit" Background="#FF1F1F1F" Grid.Column="3" BorderBrush="#FF1F1F1F" Foreground="#FF999D9F" Style="{DynamicResource Exit_Batton}" Margin="0,-2,-1,0"
-                    Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" MouseEnter="Exit_MouseEnter" MouseLeave="Exit_MouseLeave">
-                <Button.Command>
-                    <cmd:CloseApplicationCommand/>
-                </Button.Command>
+                    Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" MouseEnter="Exit_MouseEnter" MouseLeave="Exit_MouseLeave" Command="{Binding CloseApplicationCommand}">
                 <TextBlock Text="x" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Height="24" FontFamily="Calibri" FontSize="18" Width="24"/>
             </Button>
             <Rectangle Fill="#FF68FF30" Grid.Row="3" Grid.ColumnSpan="5" Grid.Column="0" />
@@ -185,7 +180,7 @@
             <Rectangle Grid.Column="2" Fill="#FF1F1F1F" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="2" Grid.Row="1"/>
             <Rectangle Grid.Row="0" Grid.Column="2" Fill="#FF1F1F1F" HorizontalAlignment="Left" Height="3" VerticalAlignment="Top" Width="2"/>
         </Grid>
-        <Rectangle MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" Margin="0,0,49,750" Grid.Column="1">
+        <Rectangle AllowDrop="True" Margin="0,0,49,750" Grid.Column="1">
             <Rectangle.Fill>
                 <SolidColorBrush Color="#FF1F1F1F"/>
             </Rectangle.Fill>

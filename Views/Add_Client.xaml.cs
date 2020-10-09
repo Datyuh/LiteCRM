@@ -15,7 +15,7 @@ namespace LiteCRM.Views
     {
         public Add_Client()
         {
-            InitializeComponent();            
+            InitializeComponent();
             var typeWorkInCombo = new List<string> { "ООС", "ПНОЛР", "ПДВ" };
             TypeWork_Combo.ItemsSource = typeWorkInCombo;
         }
@@ -57,8 +57,8 @@ namespace LiteCRM.Views
                         DateEndContract = dateEndContractClient,
                         SymmaContract = (float?)symmaContractClient,
                         StatusContract = statusContract,
-                    };    
-                    
+                    };
+
                     dbClient.Clients.Add(clients);
                     dbClient.SaveChanges();
                     MessageBox.Show("Клиент добавлен в базу", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -70,7 +70,7 @@ namespace LiteCRM.Views
             }
 
         }
-     
+
         private void SymmaContract_text_GotFocus(object sender, RoutedEventArgs e)
         {
             SymmaContract_text.Foreground = Brushes.Black;
@@ -80,12 +80,12 @@ namespace LiteCRM.Views
 
         private void SymmaContract_text_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(SymmaContract_text.Text == "")
+            if (SymmaContract_text.Text == "")
             {
                 SymmaContract_text.Text = 0.ToString();
                 SymmaContract_text.Foreground = Brushes.Gray;
             }
-            
+
         }
 
         // Dictionary<string, object> keyValuePairs = new Dictionary<string, object>

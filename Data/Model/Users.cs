@@ -1,7 +1,7 @@
 ﻿namespace LiteCRM.BaseWork.Model
 {
     public class Users
-    {        
+    {
         public int id { get; set; }
         public string Login { get; set; }
         public string Pass { get; set; }

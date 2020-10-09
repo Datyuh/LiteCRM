@@ -60,20 +60,22 @@
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="ButtonExitDrop.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\WindowPages\Pages\AddClientsView.xaml.cs">
+      <DependentUpon>AddClientsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\Context\ApplicationContext.cs" />
     <Compile Include="Data\DbClientRequest.cs" />
     <Compile Include="Data\DbUsersRequest.cs" />
     <Compile Include="Data\Model\Client.cs" />
     <Compile Include="Data\Model\Users.cs" />
     <Compile Include="Infrastucture\Commands\Base\Command.cs" />
-    <Compile Include="Infrastucture\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastucture\Commands\LambdaCommand.cs" />
-    <Compile Include="Infrastucture\Commands\MinimizedWindowCommand.cs" />
-    <Compile Include="LogIn.xaml.cs">
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Views\WindowPages\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -81,37 +83,47 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AddClientViewsModel.cs" />
+    <Compile Include="ViewModels\AddClientViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\DescktopViewsModel.cs" />
-    <Compile Include="ViewModels\SearchContactsModel.cs" />
+    <Compile Include="ViewModels\DescktopViewModel.cs" />
+    <Compile Include="ViewModels\SearchContactsViewModel.cs" />
     <Compile Include="Views\Add_Client.xaml.cs">
       <DependentUpon>Add_Client.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DescktopViews.xaml.cs">
       <DependentUpon>DescktopViews.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WindowPages\Pages\DescktopAdminView.xaml.cs">
+      <DependentUpon>DescktopAdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowPages\Pages\SearchContactsView.xaml.cs">
+      <DependentUpon>SearchContactsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SearchContacts.xaml.cs">
       <DependentUpon>SearchContacts.xaml</DependentUpon>
     </Compile>
-    <Page Include="Block_button_control.xaml">
+    <Page Include="Views\WindowPages\Pages\AddClientsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LogIn.xaml">
+    <Page Include="Views\Resources\Block_button_control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\MainWindow.xaml">
+    <Page Include="Views\WindowPages\LogIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowPages\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ButtonExitDrop.xaml.cs">
-      <DependentUpon>ButtonExitDrop.xaml</DependentUpon>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\Windows\MainWindow.xaml.cs">
+    <Compile Include="Views\WindowPages\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -120,6 +132,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DescktopViews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowPages\Pages\DescktopAdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowPages\Pages\SearchContactsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +298,9 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\WindowPages\Pages\Search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
