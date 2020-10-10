@@ -1,12 +1,10 @@
-﻿using LiteCRM.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using LiteCRM.Views;
+using LiteCRM.ViewModels;
 
-
-namespace LiteCRM
+namespace LiteCRM.Views.WindowPages
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -17,16 +15,9 @@ namespace LiteCRM
         {
             InitializeComponent();
 
-            DataContext = new DescktopViewsModel();
-
             Dasktop.Background = Brushes.White;
             Deskbord.Foreground = Brushes.Black;
             Tangle_Desktop.Fill = Brushes.Lime;
-        }
-
-        private void Out_Click(object sender, RoutedEventArgs e)
-        {
-            new LogIn().Show();
         }
 
         public void GetInUserRight(List<string> ur)
@@ -45,7 +36,6 @@ namespace LiteCRM
 
         private void Dasktop_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new DescktopViewsModel();
 
             if (Dasktop.IsPressed == false)
             {
@@ -70,7 +60,6 @@ namespace LiteCRM
 
         private void Add_cient_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new AddClientViewsModel();
 
             if (Add_cient.IsPressed == false)
             {
@@ -118,7 +107,6 @@ namespace LiteCRM
         }
         private void Contact_batton_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new SearchContactsModel();
 
             if (Contact_batton.IsPressed == false)
             {
@@ -174,12 +162,6 @@ namespace LiteCRM
         private void RollUp_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
-        }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            new LogIn().Show();
-            Close();
         }
 
         private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

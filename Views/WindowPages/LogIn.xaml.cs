@@ -1,11 +1,11 @@
-﻿using LiteCRM.BaseWork;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using LiteCRM.BaseWork;
 
-namespace LiteCRM.Views
+namespace LiteCRM.Views.WindowPages
 {
     /// <summary>
     /// Логика взаимодействия для LogIn.xaml
@@ -33,7 +33,7 @@ namespace LiteCRM.Views
 
             if (logIn.Contains(LoginUser) && pass.Contains(PassUser))
             {
-                MainWindow mainWindow = new MainWindow();
+                //MainWindow mainWindow = new MainWindow();
                 Close();
 
                 //mainWindow.GetInUserRight(uRight);

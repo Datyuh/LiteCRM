@@ -2,6 +2,7 @@
 using LiteCRM.ViewModels.Base;
 using System.Windows;
 using System.Windows.Input;
+using LiteCRM.Views.WindowPages;
 
 namespace LiteCRM.ViewModels
 {
