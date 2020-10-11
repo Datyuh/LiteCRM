@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LiteCRM.BaseWork.Model
+namespace LiteCRM.Data.Model
 {
     public class Client
     {

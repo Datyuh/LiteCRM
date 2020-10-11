@@ -1,11 +1,14 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using LiteCRM.Infrastucture.Commands;
 using LiteCRM.ViewModels.Base;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using LiteCRM.Views.WindowPages.Pages;
+using Application = System.Windows.Application;
 
 namespace LiteCRM.ViewModels
 {
@@ -18,43 +21,39 @@ namespace LiteCRM.ViewModels
         private readonly Page _searchContactsView;
 
         private Page _currentPage;
-
         public Page CurrentPage { get => _currentPage; set => Set(ref _currentPage, value); }
 
         private double _frameOpacity;
-
         public double FrameOpacity { get => _frameOpacity; set => Set(ref _frameOpacity, value); }
 
         #endregion
 
         #region Команды
+
         //Смена окна на добавление клиентов
         public ICommand CurrentPageAddClientsCommand { get; }
         private bool CanCurrentPageAddClientsCommandExecute(object p) => true;
-
         private void OnCurrentPageAddClientsCommandExecuted(object p) => SlowOpaciry(_addClientsView);
 
         //Смена окна на Рабочий стол
         public ICommand CurrentPageDescktopAdminCommand { get; }
         private bool CanCurrentPageDescktopAdminCommandExecute(object p) => true;
-
         private void OnCurrentPageDescktopAdminCommandExecuted(object p) => SlowOpaciry(_descktopAdminView);
 
         //Смена окна на Поиск клиентов
         public ICommand CurrentPageSearchContactsCommand { get; }
         private bool CanCurrentPageSearchContactsCommandExecute(object p) => true;
-
         private void OnCurrentPageSearchContactsCommandExecuted(object p) => SlowOpaciry(_searchContactsView);
 
         // Закрытие Окна
         public ICommand CloseApplicationMainCommand { get; }
         private bool CanCloseApplicationMainCommandExecute(object p) => true;
-
         private void OnCloseApplicationMainCommandExecuted(object p) { Application.Current.Shutdown(); }
 
         #endregion
 
         #region Плавная смена окон
+
         private async void SlowOpaciry(Page page)
         {
             await Task.Factory.StartNew(() =>
@@ -73,7 +72,9 @@ namespace LiteCRM.ViewModels
                 }
             });
         }
+
         #endregion
+
 
 
         public MainWindowViewModel()
@@ -87,7 +88,8 @@ namespace LiteCRM.ViewModels
             // Команда на смену окна Добавления Рабочего стола
             CurrentPageDescktopAdminCommand = new LambdaCommand(OnCurrentPageDescktopAdminCommandExecuted, CanCurrentPageDescktopAdminCommandExecute);
             // Команда на смену окна для Поиска по базе
-            CurrentPageSearchContactsCommand = new LambdaCommand(OnCurrentPageSearchContactsCommandExecuted, CanCurrentPageSearchContactsCommandExecute);  
+            CurrentPageSearchContactsCommand = new LambdaCommand(OnCurrentPageSearchContactsCommandExecuted, CanCurrentPageSearchContactsCommandExecute);
+
             #endregion
 
             #region Объявление экземпляров окон для добавления в основное окно
@@ -101,6 +103,20 @@ namespace LiteCRM.ViewModels
             CurrentPage = _descktopAdminView;
 
             #endregion
+
+            //public void GetInUserRight(List<string> ur)
+            //{
+            //    if (ur.Contains("User"))
+            //    {
+            //        Add_cient.IsEnabled = false;
+            //        Work_to_base.IsEnabled = false;
+            //    }
+
+            //    else
+            //    {
+            //        Add_cient.IsEnabled = true;
+            //    }
+            //}
         }
 
     }

@@ -1,8 +1,8 @@
-﻿using LiteCRM.BaseWork.Context;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using LiteCRM.Data.Context;
 
-namespace LiteCRM.BaseWork
+namespace LiteCRM.Data
 {
     class DbUsersRequest
     {

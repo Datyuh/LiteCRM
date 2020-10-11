@@ -1,4 +1,4 @@
-﻿namespace LiteCRM.BaseWork.Model
+﻿namespace LiteCRM.Data.Model
 {
     public class Users
     {

@@ -1,38 +1,54 @@
-﻿<Window x:Class="LiteCRM.Views.WindowPages.LogIn"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LiteCRM"
-        xmlns:cmd="clr-namespace:LiteCRM.Infrastucture.Commands"
-        mc:Ignorable="d"
-        xmlns:viewmodels="clr-namespace:LiteCRM.ViewModels"
-        Title="LogIn" Height="280" Width="260" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+﻿<Window
+    x:Class="LiteCRM.Views.WindowPages.LogIn"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cmd="clr-namespace:LiteCRM.Infrastucture.Commands"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LiteCRM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:LiteCRM.ViewModels"
+    xmlns:components="clr-namespace:LiteCRM.Components"
+    Title="LogIn"
+    Width="260"
+    Height="280"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Window.DataContext>
-        <viewmodels:LoginViewModel/>
+        <viewmodels:LoginViewModel></viewmodels:LoginViewModel>
     </Window.DataContext>
     <Window.Resources>
         <Style x:Key="Combobxbutton1" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Background" Value="#FF448899"/>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="#FF448899" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="border" CornerRadius="15" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border
+                            Name="border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <EventTrigger RoutedEvent="PreviewMouseDown">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="2,2,0,0"/>
+                                        <ThicknessAnimation
+                                            Storyboard.TargetProperty="Margin"
+                                            To="2,2,0,0"
+                                            Duration="0:0:0.100" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="PreviewMouseUp">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="0"/>
+                                        <ThicknessAnimation
+                                            Storyboard.TargetProperty="Margin"
+                                            To="0"
+                                            Duration="0:0:0.100" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -44,55 +60,180 @@
     </Window.Resources>
     <Grid Background="#FF25292A">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="3" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+            <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="3" BorderThickness="2" CornerRadius="15" Margin="156,147,0,0" Grid.ColumnSpan="3" Height="30" VerticalAlignment="Top">
+        <Border
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            Height="30"
+            Margin="156,147,0,0"
+            VerticalAlignment="Top"
+            BorderThickness="2"
+            CornerRadius="15">
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="BorderBrush" Value="#FFFFA200"/>
+                    <Setter Property="BorderBrush" Value="#FFFFA200" />
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="#FFFD0000"/>
+                            <Setter Property="BorderBrush" Value="#FFFD0000" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <Button x:Name="GetIn" Style="{StaticResource Combobxbutton1}" Background="#FF555555"  Command="{Binding ButtonClickGetInCommand}">
+            <Button
+                x:Name="GetIn"
+                Background="#FF555555"
+                Command="{Binding ButtonClickGetInCommand}"
+                Style="{StaticResource Combobxbutton1}"
+                IsDefault="True">
                 <Button.Content>
-                    <TextBlock Text="Вход" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri" FontSize="16"/>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="Calibri"
+                        FontSize="16"
+                        Foreground="White"
+                        Text="Вход" />
                 </Button.Content>
             </Button>
         </Border>
-        <Rectangle Grid.Row="0" Fill="#FF1F1F1F" Grid.RowSpan="3" Grid.ColumnSpan="4" Grid.Column="0" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
-        <Label Content="Логин" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF68FF30" Grid.Row="3"
-               Grid.Column="0" Height="30" Width="57" FontFamily="Calibri"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.635,2.623" FontSize="18" Foreground="#FF68FF30" Grid.Row="3"
-               Grid.Column="0" Height="30" Width="66" FontFamily="Calibri"/>
-        <TextBlock Foreground="#FFFFA200" FontFamily="Segoe Print" FontSize="14" TextWrapping="Wrap" TextAlignment="Center" Background="#FF1F1F1F" Grid.ColumnSpan="4" 
-                   Grid.Column="0" Margin="0,10,0,0"
-                   Grid.Row="0" Grid.RowSpan="3" MouseLeftButtonDown="Grid_MouseLeftButtonDown"><Run Foreground="#FF68FF30" FontSize="12" Text="Lite"/><Run FontSize="22" FontFamily="Calibri" Text="CRM"/></TextBlock>
-        <TextBlock Foreground="#FFB03D3D" FontFamily="Segoe Print" FontSize="24" VerticalAlignment="Top" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="3" Margin="0,10,0,0" Grid.ColumnSpan="4"
-                   Grid.Column="0" Height="35"><Run FontFamily="Calibri" Text="Авторизация"/></TextBlock>
-        <PasswordBox x:Name="PasswordText" TabIndex="2" Margin="83,97,0,0" Background="White" BorderBrush="#FFFFA200" Grid.Row="3" Foreground="Black" SelectionBrush="#FF486BE4" Grid.ColumnSpan="3"
-                     Grid.Column="0" Height="30" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" BorderThickness="2" Style="{DynamicResource PasswordBoxStyle}"  Padding="5"/>
-        <Rectangle Fill="#FF68FF30" Grid.Row="4" Grid.ColumnSpan="5" Grid.Column="0" />
-        <TextBox x:Name="LoginText" TabIndex="1" Margin="83,50,0,0" Grid.Row="3" TextWrapping="Wrap" BorderBrush="#FFFFA200" SelectionBrush="#FF486BE4" Grid.ColumnSpan="3"
-                 Grid.Column="0" Height="30" VerticalAlignment="Top" FontFamily="Calibri" BorderThickness="2" Style="{DynamicResource NewTextBoxAddClient}" Padding="5" FontSize="14"/>
-        <Button x:Name="Exit_LogIn" Content="x" Grid.Column="3" Background="#FF1F1F1F" Foreground="#FF999D9F" BorderBrush="#FF1F1F1F" Command="{Binding CloseApplicationCommand}"
-                Grid.Row="0" Grid.RowSpan="2" MouseEnter="Exit_MouseEnter" MouseLeave="Exit_MouseLeave" Margin="0,-2,-2,0" FontFamily="Calibri" FontSize="18" Style="{DynamicResource Exit_Batton}">
-        </Button>
-        <Button x:Name="Drop_LogIn" Content="–" Background="#FF1F1F1F" Foreground="#FF999D9F" BorderBrush="#FF1F1F1F"
-                Grid.Row="0" Grid.RowSpan="2" MouseEnter="Drop_MouseEnter" MouseLeave="Drop_MouseLeave" Margin="216,-2,0,0" Grid.ColumnSpan="2"
-                Grid.Column="0" FontFamily="Calibri" FontSize="18" Style="{DynamicResource Exit_Batton}" Click="Drop_LogIn_Click"/>
+        <Rectangle
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Fill="#FF1F1F1F"
+            MouseLeftButtonDown="Grid_MouseLeftButtonDown" />
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Width="57"
+            Height="30"
+            Margin="10,50,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Логин"
+            FontFamily="Calibri"
+            FontSize="18"
+            Foreground="#FF68FF30" />
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Width="66"
+            Height="30"
+            Margin="10,97,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Пароль"
+            FontFamily="Calibri"
+            FontSize="18"
+            Foreground="#FF68FF30"
+            RenderTransformOrigin="0.635,2.623" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Margin="0,10,0,0"
+            Background="#FF1F1F1F"
+            FontFamily="Segoe Print"
+            FontSize="14"
+            Foreground="#FFFFA200"
+            MouseLeftButtonDown="Grid_MouseLeftButtonDown"
+            TextAlignment="Center"
+            TextWrapping="Wrap"><Run
+                FontSize="12"
+                Foreground="#FF68FF30"
+                Text="Lite" /><Run
+                FontFamily="Calibri"
+                FontSize="22"
+                Text="CRM" /></TextBlock>
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Height="35"
+            Margin="0,10,0,0"
+            VerticalAlignment="Top"
+            FontFamily="Segoe Print"
+            FontSize="24"
+            Foreground="#FFB03D3D"
+            TextAlignment="Center"
+            TextWrapping="Wrap"><Run FontFamily="Calibri" Text="Авторизация" /></TextBlock>
+        <components:BindablePasswordBox
+            Password="{Binding PassUserInputWithoutWindow}"
+            x:Name="PasswordText"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="83,97,0,0"
+            VerticalAlignment="Top"
+            TabIndex="2"/>
+        <Rectangle
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Fill="#FF68FF30" />
+        <TextBox
+            x:Name="LoginText"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Height="30"
+            Margin="83,50,0,0"
+            Padding="5"
+            VerticalAlignment="Top"
+            BorderBrush="#FFFFA200"
+            BorderThickness="2"
+            FontFamily="Calibri"
+            FontSize="14"
+            SelectionBrush="#FF486BE4"
+            Style="{DynamicResource NewTextBoxAddClient}"
+            TabIndex="1"
+            Text="{Binding LoginUserInputWithoutWindow, Mode=TwoWay}"
+            TextWrapping="Wrap"/>
+        <Button
+            x:Name="Exit_LogIn"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="3"
+            Margin="0,-2,-2,0"
+            Background="#FF1F1F1F"
+            BorderBrush="#FF1F1F1F"
+            Command="{Binding CloseApplicationCommand}"
+            Content="x"
+            FontFamily="Calibri"
+            FontSize="18"
+            Foreground="#FF999D9F"
+            MouseEnter="Exit_MouseEnter"
+            MouseLeave="Exit_MouseLeave"
+            Style="{DynamicResource Exit_Batton}" />
+        <Button
+            x:Name="Drop_LogIn"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="216,-2,0,0"
+            Background="#FF1F1F1F"
+            BorderBrush="#FF1F1F1F"
+            Click="Drop_LogIn_Click"
+            Content="–"
+            FontFamily="Calibri"
+            FontSize="18"
+            Foreground="#FF999D9F"
+            MouseEnter="Drop_MouseEnter"
+            MouseLeave="Drop_MouseLeave"
+            Style="{DynamicResource Exit_Batton}" />
     </Grid>
 </Window>

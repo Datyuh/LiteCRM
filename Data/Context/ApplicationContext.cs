@@ -1,8 +1,8 @@
-﻿using LiteCRM.BaseWork.Model;
+﻿using System.Windows;
+using LiteCRM.Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System.Windows;
 
-namespace LiteCRM.BaseWork.Context
+namespace LiteCRM.Data.Context
 {
     public class ApplicationContext : DbContext
     {

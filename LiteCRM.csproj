@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WindowPages\Pages\AddClientsView.xaml.cs">
       <DependentUpon>AddClientsView.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
     <Compile Include="Views\SearchContacts.xaml.cs">
       <DependentUpon>SearchContacts.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WindowPages\Pages\AddClientsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
