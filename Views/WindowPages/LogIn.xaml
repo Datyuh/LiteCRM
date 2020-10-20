@@ -16,7 +16,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
     <Window.DataContext>
-        <viewmodels:LoginViewModel></viewmodels:LoginViewModel>
+        <viewmodels:LoginViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <Style x:Key="Combobxbutton1" TargetType="Button">
@@ -93,9 +93,9 @@
             <Button
                 x:Name="GetIn"
                 Background="#FF555555"
-                Command="{Binding ButtonClickGetInCommand}"
+                Command="{Binding ButtonClickGetInCommand, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource Combobxbutton1}"
-                IsDefault="True">
+                IsDefault="True" TabIndex="3">
                 <Button.Content>
                     <TextBlock
                         HorizontalAlignment="Center"
@@ -103,7 +103,7 @@
                         FontFamily="Calibri"
                         FontSize="16"
                         Foreground="White"
-                        Text="Вход" />
+                        Text="Вход"/>
                 </Button.Content>
             </Button>
         </Border>
@@ -171,7 +171,7 @@
             TextAlignment="Center"
             TextWrapping="Wrap"><Run FontFamily="Calibri" Text="Авторизация" /></TextBlock>
         <components:BindablePasswordBox
-            Password="{Binding PassUserInputWithoutWindow}"
+            Password="{Binding PassUserInputWithoutWindow, Mode=TwoWay}"
             x:Name="PasswordText"
             Grid.Row="3"
             Grid.Column="0"
@@ -203,21 +203,20 @@
             Text="{Binding LoginUserInputWithoutWindow, Mode=TwoWay}"
             TextWrapping="Wrap"/>
         <Button
-            x:Name="Exit_LogIn"
+            x:Name="Exit_LogIn" 
             Grid.Row="0"
             Grid.RowSpan="2"
             Grid.Column="3"
             Margin="0,-2,-2,0"
             Background="#FF1F1F1F"
             BorderBrush="#FF1F1F1F"
-            Command="{Binding CloseApplicationCommand}"
             Content="x"
             FontFamily="Calibri"
             FontSize="18"
             Foreground="#FF999D9F"
             MouseEnter="Exit_MouseEnter"
             MouseLeave="Exit_MouseLeave"
-            Style="{DynamicResource Exit_Batton}" />
+            Style="{DynamicResource Exit_Batton}" Command="{Binding CloseApplicationCommand, Mode=OneWay}"/>
         <Button
             x:Name="Drop_LogIn"
             Grid.Row="0"

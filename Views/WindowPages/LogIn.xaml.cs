@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using LiteCRM.Data;
 
 namespace LiteCRM.Views.WindowPages
 {
@@ -24,28 +21,6 @@ namespace LiteCRM.Views.WindowPages
         {
             WindowState = WindowState.Minimized;
         }
-
-        //private void GetIn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string LoginUser = LoginText.Text;
-        //    string PassUser = PasswordText.Password;
-        //    var uRight = new DbUsersRequest().UserRightGetIn(PassUser, LoginUser).AsParallel().ToList();
-
-        //    if (logIn.Contains(LoginUser) && pass.Contains(PassUser))
-        //    {
-        //        //MainWindow mainWindow = new MainWindow();
-        //        Close();
-
-        //        //mainWindow.GetInUserRight(uRight);
-        //        //mainWindow.Show();
-
-        //    }
-
-        //    else
-        //    {
-        //        MessageBox.Show("Нет пользователя с таким Логином и Паролем", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-        //    }
-        //}
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

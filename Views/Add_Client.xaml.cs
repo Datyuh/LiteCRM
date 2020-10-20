@@ -1,10 +1,10 @@
-﻿using System;
+﻿using LiteCRM.Data.Context;
+using LiteCRM.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using LiteCRM.Data.Context;
-using LiteCRM.Data.Model;
 
 namespace LiteCRM.Views
 {

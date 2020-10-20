@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using LiteCRM.ViewModels;
 
 namespace LiteCRM.Views.WindowPages
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -18,20 +16,7 @@ namespace LiteCRM.Views.WindowPages
             Dasktop.Background = Brushes.White;
             Deskbord.Foreground = Brushes.Black;
             Tangle_Desktop.Fill = Brushes.Lime;
-        }
 
-        public void GetInUserRight(List<string> ur)
-        {
-            if (ur.Contains("User"))
-            {
-                Add_cient.IsEnabled = false;
-                Work_to_base.IsEnabled = false;
-            }
-
-            else
-            {
-                Add_cient.IsEnabled = true;
-            }
         }
 
         private void Dasktop_Click(object sender, RoutedEventArgs e)
@@ -105,6 +90,7 @@ namespace LiteCRM.Views.WindowPages
                 Tangle_contact.Fill = Brushes.Orange;
             }
         }
+
         private void Contact_batton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -131,7 +117,8 @@ namespace LiteCRM.Views.WindowPages
 
         private void Dasktop_MouseEnter(object sender, MouseEventArgs e)
         {
-            Info_button.Text = "Преход на робочий стол где расположенны основные графики и актуальня информация о договорах";
+            Info_button.Text =
+                "Преход на робочий стол где расположенны основные графики и актуальня информация о договорах";
         }
 
         private void Dasktop_MouseLeave(object sender, MouseEventArgs e)
@@ -141,7 +128,7 @@ namespace LiteCRM.Views.WindowPages
 
         private void Add_cient_MouseEnter(object sender, MouseEventArgs e)
         {
-            Info_button.Text = "Добавление клиентов и просмотр последних добавленных за последный месяц";
+            Info_button.Text = "Добавление клиентов и просмотр добавленных за последный месяц";
         }
 
         private void Add_cient_MouseLeave(object sender, MouseEventArgs e)
@@ -194,3 +181,4 @@ namespace LiteCRM.Views.WindowPages
         }
     }
 }
+

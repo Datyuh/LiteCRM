@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Data;
 
 namespace LiteCRM.Components
@@ -8,13 +6,13 @@ namespace LiteCRM.Components
     /// <summary>
     /// Логика взаимодействия для BindablePasswordBox.xaml
     /// </summary>
-    public partial class BindablePasswordBox : UserControl
+    public partial class BindablePasswordBox
     {
         private bool _isPasswordChanging;
 
-        public static readonly DependencyProperty PasswordProperty = 
+        public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(BindablePasswordBox),
-                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
+                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     PasswordPropertyChanged, null, false, UpdateSourceTrigger.PropertyChanged));
 
         private static void PasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -27,8 +25,8 @@ namespace LiteCRM.Components
 
         public string Password
         {
-            get { return (string) GetValue(PasswordProperty); }
-            set { SetValue(PasswordProperty, value);}
+            get { return (string)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
         }
         public BindablePasswordBox()
         {

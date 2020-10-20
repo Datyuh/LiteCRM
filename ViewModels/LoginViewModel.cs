@@ -1,24 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using LiteCRM.Data;
 using LiteCRM.Infrastucture.Commands;
 using LiteCRM.ViewModels.Base;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using LiteCRM.Data;
-using LiteCRM.Data.Context;
-using LiteCRM.Data.Model;
 using LiteCRM.Views.WindowPages;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace LiteCRM.ViewModels
 {
     internal class LoginViewModel : BaseViewModel
     {
+        public MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
         #region Переменные для базы данных
 
-        private List<string> LoginWithoutBase;
-        private List<string> PassWithoutBase;
+        //private readonly List<string> _loginWithoutBase;
+        //private List<string> _passWithoutBase;
+        public ObservableCollection<string> UserRightGetIn;
 
         #endregion
 
@@ -27,35 +24,24 @@ namespace LiteCRM.ViewModels
         private string _passUserInputWithoutWindow;
         private string _loginUserInputWithoutWindow;
 
-        public string PassUserInputWithoutWindow { get => _passUserInputWithoutWindow; set => Set(ref _passUserInputWithoutWindow, value); }
-        public string LoginUserInputWithoutWindow { get => _loginUserInputWithoutWindow; set => Set(ref _loginUserInputWithoutWindow, value); }
+        public string LoginUserInputWithoutWindow { get => _loginUserInputWithoutWindow; set => SetRef(ref _loginUserInputWithoutWindow, value); }
+        public string PassUserInputWithoutWindow { get => _passUserInputWithoutWindow; set => SetRef(ref _passUserInputWithoutWindow, value); }
 
         #endregion
 
 
         #region Команды
 
-        public  ICommand ButtonClickGetInCommand { get; }
-
-        private bool CanButtonClickGetInCommandExecute(object p) => true;
-
-        private void OnButtonClickGetInCommandExecuted(object p) => LogInUsers(LoginUserInputWithoutWindow, PassUserInputWithoutWindow);
-
-        public void LogInUsers(object l, object p)
+        public ICommand ButtonClickGetInCommand { get; }
+        private bool CanButtonClickGetInCommandExecute(object p) => true; //new VerifyHashedPassword().VerifyHashedPasswords(, );
+        private void OnButtonClickGetInCommandExecuted(object p)
         {
-            if (LoginWithoutBase.Contains(l) && PassWithoutBase.Contains(p))
-            {
-                var passwordBox = new PasswordBox();
-                var password = passwordBox.Password;
-                PassUserInputWithoutWindow = password;
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-            }
-               
-            else
-            {
-                MessageBox.Show("Нет пользователя с таким Логином и Паролем", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
+            MainWindow mainWindow = new MainWindow {DataContext = mainWindowViewModel};
+            mainWindow.Show();
+            UserRightGetIn = new DbUsersRequest().UserRightGetIn(LoginUserInputWithoutWindow, PassUserInputWithoutWindow);
+            const bool a = false; //!UserRightGetIn.Contains("User");
+            mainWindowViewModel.AddClientDependingUserLoginIsEnable = a;
+
         }
 
         public ICommand CloseApplicationCommand { get; }
@@ -67,10 +53,6 @@ namespace LiteCRM.ViewModels
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
             ButtonClickGetInCommand = new LambdaCommand(OnButtonClickGetInCommandExecuted, CanButtonClickGetInCommandExecute);
-
-            LoginWithoutBase = new DbUsersRequest().LogInUsers().AsParallel().ToList();
-            PassWithoutBase = new DbUsersRequest().PassUsers().AsParallel().ToList();
-
         }
     }
 }

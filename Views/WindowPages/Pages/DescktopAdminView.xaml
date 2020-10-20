@@ -23,7 +23,7 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Label Content="Рабочий стол" Grid.Column="1" Margin="5,5,320,5" FontFamily="Calibri" FontSize="36" Grid.Row="0"/>
-        <DataGrid x:Name="ContractDelay" Grid.Column="2" Margin="5,42,0,0" Grid.Row="4" BorderBrush="#FFFFA200" BorderThickness="2" FontFamily="Calibri">
+        <DataGrid x:Name="ContractDelay" Grid.Column="2" Margin="5,42,0,0" Grid.Row="4" BorderBrush="#FFFFA200" BorderThickness="2" FontFamily="Calibri" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="namberContractDelay" Header="№ договора" MaxWidth="100" CanUserReorder="False" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="typeWorkDelay" Header="Вид работ" MaxWidth="100" CanUserReorder="False" IsReadOnly="True"/>
@@ -32,7 +32,7 @@
                 <DataGridTextColumn x:Name="dateEndContractDelay" Header="Дата окончания договора" MaxWidth="200" CanUserReorder="False" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="ContractInWork" Grid.Column="1" Margin="0,42,5,0" Grid.Row="4" BorderBrush="#FFFFA200" BorderThickness="2" FontFamily="Calibri">
+        <DataGrid x:Name="ContractInWork" Grid.Column="1" Margin="0,42,5,0" Grid.Row="4" BorderBrush="#FFFFA200" BorderThickness="2" FontFamily="Calibri" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="namberContractInWork" Header="№ договора" MaxWidth="250" CanUserReorder="False" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="typeWorkInWork" Header="Вид работ" MaxWidth="300" CanUserReorder="False" IsReadOnly="True"/>

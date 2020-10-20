@@ -3,12 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cmd="clr-namespace:LiteCRM.Infrastucture.Commands"
+    xmlns:components="clr-namespace:LiteCRM.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:LiteCRM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:LiteCRM.ViewModels"
     xmlns:views="clr-namespace:LiteCRM.Views"
-    Title=""
     Width="1400"
     Height="800"
     Background="#FF25292A"
@@ -16,9 +16,7 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Window.DataContext>
-        <viewmodels:MainWindowViewModel />
-    </Window.DataContext>
+
     <Window.Resources>
         <Style x:Key="Combobxbutton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -59,6 +57,10 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel />
+    </Window.DataContext>
+
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250" />
@@ -89,16 +91,21 @@
                 FontSize="14"
                 Foreground="#FFFFA200"
                 TextAlignment="Center"
-                TextWrapping="Wrap"><Run
+                TextWrapping="Wrap">
+                <Run
                     FontSize="12"
                     Foreground="#FF68FF30"
-                    Text="Lite" /><Run
+                    Text="Lite" />
+                <Run
                     FontFamily="Calibri"
                     FontSize="22"
-                    Text="CRM" /><LineBreak /><Run
+                    Text="CRM" />
+                <LineBreak />
+                <Run
                     FontSize="11"
                     Foreground="White"
-                    Text="На страже вашего бизнеса" /></TextBlock>
+                    Text="На страже вашего бизнеса" />
+            </TextBlock>
 
             <Button
                 x:Name="Dasktop"
@@ -126,7 +133,10 @@
                             FontFamily="Calibri"
                             FontSize="18"
                             Text="Рабочий стол" />
-                        <Rectangle x:Name="Tangle_Desktop" Fill="#FFFFA200" />
+                        <Rectangle
+                            x:Name="Tangle_Desktop"
+                            Grid.Column="0"
+                            Fill="#FFFFA200" />
                     </Grid>
                 </Button.Content>
             </Button>
@@ -139,6 +149,7 @@
                 VerticalAlignment="Top"
                 Click="Add_cient_Click"
                 Command="{Binding CurrentPageAddClientsCommand}"
+                IsEnabled="{Binding AddClientDependingUserLoginIsEnable, Mode=TwoWay}"
                 MouseEnter="Add_cient_MouseEnter"
                 MouseLeave="Add_cient_MouseLeave"
                 Style="{DynamicResource Block_conrol_bautton}">
@@ -172,6 +183,7 @@
                 Margin="0,265,-2,0"
                 VerticalAlignment="Top"
                 Click="Work_to_base_Click"
+                IsEnabled="{Binding WorkBaseDependingUserLoginIsEnable}"
                 MouseEnter="Work_to_base_MouseEnter"
                 MouseLeave="Work_to_base_MouseLeave"
                 Style="{DynamicResource Block_conrol_bautton}">
@@ -190,7 +202,10 @@
                             FontFamily="Calibri"
                             FontSize="18"
                             Text="Работа с базой клиентов" />
-                        <Rectangle x:Name="Tangle_work_base" Fill="#FFFFA200" />
+                        <Rectangle
+                            x:Name="Tangle_work_base"
+                            Grid.Column="0"
+                            Fill="#FFFFA200" />
                     </Grid>
                 </Button.Content>
             </Button>
@@ -213,7 +228,7 @@
                 <Button
                     x:Name="Out"
                     Background="#FF555555"
-                    Command="{Binding CloseApplicationMainCommand}"
+                    Command="{Binding CloseApplicationMainCommand, Mode=OneWay}"
                     Style="{StaticResource Combobxbutton}">
                     <Button.Content>
                         <TextBlock
@@ -379,7 +394,7 @@
         </Rectangle>
         <Frame
             Grid.Column="1"
-            Margin="0,50,0,0"
+            Margin="0,50,0,10"
             Content="{Binding CurrentPage}"
             NavigationUIVisibility="Hidden"
             Opacity="{Binding FrameOpacity}" />

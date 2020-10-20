@@ -1,10 +1,10 @@
-﻿using System.Windows;
-using LiteCRM.Data.Model;
+﻿using LiteCRM.Data.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Windows;
 
 namespace LiteCRM.Data.Context
 {
-    public class ApplicationContext : DbContext
+    public sealed class ApplicationContext : DbContext
     {
         public DbSet<Users> Users { get; set; }
         public DbSet<Client> Clients { get; set; }

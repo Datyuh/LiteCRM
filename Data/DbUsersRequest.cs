@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using LiteCRM.Data.Context;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using LiteCRM.Data.Context;
+using LiteCRM.ViewModels;
+using LiteCRM.Views.WindowPages;
 
 namespace LiteCRM.Data
 {
@@ -8,20 +11,20 @@ namespace LiteCRM.Data
     {
         ApplicationContext db = new ApplicationContext();
 
-        public List<string> LogInUsers()
+        public ObservableCollection<string> LogInUsers()
         {
-            var logInUsers = db.Users.Select(p => p.Login).ToList();
+            var logInUsers = new ObservableCollection<string>(db.Users.Select(p => p.Login).AsParallel());
             return logInUsers;
         }
 
-        public List<string> PassUsers()
+        public ObservableCollection<string> PassUsers(string loginUserInput)
         {
-            var passInUsers = db.Users.Select(p => p.Pass).ToList();
+            var passInUsers = new ObservableCollection<string>(db.Users.Where(p => p.Login == loginUserInput).Select(p => p.Pass).AsParallel());
             return passInUsers;
         }
-        public List<string> UserRightGetIn(string up, string ul)
+        public ObservableCollection<string> UserRightGetIn(string ulog, string upass)
         {
-            var userRight = db.Users.Where(p => p.Pass == up && p.Login == ul).Select(p => p.UserRight).ToList();
+            var userRight = new ObservableCollection<string>(db.Users.Where(p => p.Pass == upass && p.Login == ulog).Select(p => p.UserRight).AsParallel());
             return userRight;
         }
 
@@ -31,7 +34,7 @@ namespace LiteCRM.Data
             return userRight;
         }
 
-        public List<string> FIO()
+        public List<string> Fio()
         {
             var fio = db.Users.Select(p => p.FIO).ToList();
             return fio;
