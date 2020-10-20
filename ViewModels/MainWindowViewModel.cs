@@ -11,8 +11,7 @@ namespace LiteCRM.ViewModels
 {
     internal class MainWindowViewModel : BaseViewModel
     {
-       // public ObservableCollection<string> GetRightUsersCollection = new ObservableCollection<string>();
-        #region Добовление в главное окно разных страниц
+       #region Добовление в главное окно разных страниц
 
         private readonly Page _addClientsView;
         private readonly Page _descktopAdminView;
@@ -25,7 +24,7 @@ namespace LiteCRM.ViewModels
         public double FrameOpacity { get => _frameOpacity; set => SetRef(ref _frameOpacity, value); }
 
         private bool _addClientDependingUserLoginIsEnable = true;
-        public bool AddClientDependingUserLoginIsEnable { get => _addClientDependingUserLoginIsEnable; set => Set(_addClientDependingUserLoginIsEnable, value); }
+        public bool AddClientDependingUserLoginIsEnable { get => _addClientDependingUserLoginIsEnable; set => SetRef(ref _addClientDependingUserLoginIsEnable, value); }
 
         private bool _workBaseDependingUserLoginIsEnable = true;
         public bool WorkBaseDependingUserLoginIsEnable { get => _workBaseDependingUserLoginIsEnable; set => SetRef(ref _workBaseDependingUserLoginIsEnable, value); }
@@ -37,12 +36,7 @@ namespace LiteCRM.ViewModels
         //Смена окна на добавление клиентов
         public ICommand CurrentPageAddClientsCommand { get; }
         private bool CanCurrentPageAddClientsCommandExecute(object p) => true;
-
-        private void OnCurrentPageAddClientsCommandExecuted(object p)
-        {
-            //AddClientDependingUserLoginIsEnable = !GetRightUsersCollection.Contains("User");
-            SlowOpaciry(_addClientsView);
-        }
+        private void OnCurrentPageAddClientsCommandExecuted(object p) { SlowOpaciry(_addClientsView); }
 
         //Смена окна на Рабочий стол
         public ICommand CurrentPageDescktopAdminCommand { get; }
@@ -117,34 +111,6 @@ namespace LiteCRM.ViewModels
 
             #endregion
         }
-
-        #region Проверка на права пользователя
-
-        //public bool GetInUserRight(string log, string pass)
-        //{
-        //    var passWithoutBase = new DbUsersRequest().PassUsers(log).AsParallel();
-        //    if (passWithoutBase.Contains(pass))
-        //    {
-        //        var getLoginUsersSettings = new ObservableCollection<string>(new DbUsersRequest().UserRightGetIn(log, pass));
-        //        return AddClientDependingUserLoginIsEnable = !getLoginUsersSettings.Contains("User");
-        //    }
-
-        //    else
-        //    {
-        //        MessageBox.Show("Нет пользователя с таким Логином и Паролем", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-        //        return AddClientDependingUserLoginIsEnable = false;
-        //    }
-        //}
-
-        #endregion
-        //void FundsForSubdivisionsShow()
-        //{
-        //    LoginViewModel vm = new LoginViewModel();
-        //    LogIn wnd = new LogIn();
-        //    wnd.DataContext = vm;
-        //    wnd.ShowDialog();
-
-        //}
     }
 }
 

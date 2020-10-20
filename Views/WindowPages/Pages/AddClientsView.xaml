@@ -2,12 +2,15 @@
     x:Class="LiteCRM.Views.WindowPages.Pages.AddClientsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModels="clr-namespace:LiteCRM.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:LiteCRM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="740"
     d:DesignWidth="1150"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <ViewModels:AddClientViewsModel />
+    </Page.DataContext>
     <Grid Background="White">
 
         <Grid.ColumnDefinitions>
@@ -162,26 +165,30 @@
             Grid.Column="4"
             Height="30"
             Margin="10,100,30,0"
+            Padding="3"
             VerticalAlignment="Top"
             BorderBrush="#FF68FF30"
             BorderThickness="2"
             FontFamily="Calibri"
             FontSize="14"
             SelectedDateFormat="Long"
-            Style="{DynamicResource DataContract}" />
+            Style="{DynamicResource DataContract}" DisplayDate="{Binding DateStartContractClient}"
+             />
         <DatePicker
             x:Name="DateEndContract_date"
             Grid.Row="1"
             Grid.Column="4"
             Height="30"
             Margin="10,150,30,0"
+            Padding="3"
             VerticalAlignment="Top"
             BorderBrush="#FF68FF30"
             BorderThickness="2"
             FontFamily="Calibri"
             FontSize="14"
             SelectedDateFormat="Long"
-            Style="{DynamicResource DataContract}" />
+            Style="{DynamicResource DataContract}" DisplayDate="{Binding DateEndContractClient, Mode=TwoWay}"
+            />
 
         <TextBox
             x:Name="NomberContract_text"
@@ -196,6 +203,7 @@
             FontFamily="Calibri"
             FontSize="14"
             Style="{DynamicResource NewTextBoxAddClient}"
+            Text="{Binding NamberContractClient, Mode=TwoWay}"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="FIO_text"
@@ -210,6 +218,7 @@
             FontFamily="Calibri"
             FontSize="14"
             Style="{DynamicResource NewTextBoxAddClient}"
+            Text="{Binding FioClient, Mode=TwoWay}"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="NameORG_text"
@@ -224,6 +233,7 @@
             FontFamily="Calibri"
             FontSize="14"
             Style="{DynamicResource NewTextBoxAddClient}"
+            Text="{Binding NameOrgClient, Mode=TwoWay}"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="Email_text"
@@ -238,6 +248,7 @@
             FontFamily="Calibri"
             FontSize="14"
             Style="{DynamicResource NewTextBoxAddClient}"
+            Text="{Binding EmailClient, Mode=TwoWay}"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="Phone_text"
@@ -252,6 +263,7 @@
             FontFamily="Calibri"
             FontSize="14"
             Style="{DynamicResource NewTextBoxAddClient}"
+            Text="{Binding PhoneClient, Mode=TwoWay}"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="MobilPhone_text"
@@ -266,6 +278,7 @@
             FontFamily="Calibri"
             FontSize="14"
             Style="{DynamicResource NewTextBoxAddClient}"
+            Text="{Binding MobilPhoneClient, Mode=TwoWay}"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="SymmaContract_text"
@@ -279,8 +292,12 @@
             BorderThickness="2"
             FontFamily="Calibri"
             FontSize="14"
+            GotFocus="SymmaContract_text_GotFocus"
+            Initialized="UserControl_Initialized"
+            LostFocus="SymmaContract_text_LostFocus"
             Style="{DynamicResource NewTextBoxAddClient}"
-            TextWrapping="Wrap" GotFocus="SymmaContract_text_GotFocus" LostFocus="SymmaContract_text_LostFocus" Initialized="UserControl_Initialized" />
+            Text="{Binding SymmaContractClient, Mode=TwoWay}"
+            TextWrapping="Wrap" />
 
         <Button
             Grid.Row="1"
@@ -293,7 +310,7 @@
             Content="Добавить"
             FontFamily="Calibri"
             FontSize="20"
-            Style="{DynamicResource DesctopButton}" />
+            Style="{DynamicResource DesctopButton}" Command="{Binding AddClientInBaseCommand}" />
 
         <DataGrid
             x:Name="ContractForLastMonth"
@@ -373,10 +390,8 @@
             FontFamily="Calibri"
             FontSize="18"
             RenderTransformOrigin="0.746,0.5"
+            SelectedValue="{Binding TypeWorkContract, Mode=TwoWay}"
             Style="{DynamicResource ComboBoxNewRadi}"
             Template="{DynamicResource ComboBoxTemplate}" />
-
-
-
     </Grid>
 </Page>

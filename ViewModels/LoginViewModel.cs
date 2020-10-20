@@ -3,6 +3,7 @@ using LiteCRM.Infrastucture.Commands;
 using LiteCRM.ViewModels.Base;
 using LiteCRM.Views.WindowPages;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,9 +14,9 @@ namespace LiteCRM.ViewModels
         public MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
         #region Переменные для базы данных
 
-        //private readonly List<string> _loginWithoutBase;
-        //private List<string> _passWithoutBase;
-        public ObservableCollection<string> UserRightGetIn;
+        private ObservableCollection<string> _loginWithoutBase;
+        private ObservableCollection<string> _passWithoutBase;
+        private ObservableCollection<string> _userRightGetIn;
 
         #endregion
 
@@ -36,12 +37,17 @@ namespace LiteCRM.ViewModels
         private bool CanButtonClickGetInCommandExecute(object p) => true; //new VerifyHashedPassword().VerifyHashedPasswords(, );
         private void OnButtonClickGetInCommandExecuted(object p)
         {
-            MainWindow mainWindow = new MainWindow {DataContext = mainWindowViewModel};
-            mainWindow.Show();
-            UserRightGetIn = new DbUsersRequest().UserRightGetIn(LoginUserInputWithoutWindow, PassUserInputWithoutWindow);
-            const bool a = false; //!UserRightGetIn.Contains("User");
-            mainWindowViewModel.AddClientDependingUserLoginIsEnable = a;
-
+            _loginWithoutBase = new DbUsersRequest().LogInUsers();
+            _passWithoutBase = new DbUsersRequest().PassUsers(LoginUserInputWithoutWindow);
+            if (_passWithoutBase.Contains(PassUserInputWithoutWindow) && _loginWithoutBase.Contains(LoginUserInputWithoutWindow))
+            {
+                MainWindow mainWindow = new MainWindow { DataContext = mainWindowViewModel };
+                mainWindow.Show();
+                _userRightGetIn = new DbUsersRequest().UserRightGetIn(LoginUserInputWithoutWindow, PassUserInputWithoutWindow);
+                mainWindowViewModel.AddClientDependingUserLoginIsEnable = !_userRightGetIn.Contains("User");
+                mainWindowViewModel.WorkBaseDependingUserLoginIsEnable = !_userRightGetIn.Contains("User");
+            }
+            else MessageBox.Show("Нет пользователя с таким Логином и Паролем", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         public ICommand CloseApplicationCommand { get; }
