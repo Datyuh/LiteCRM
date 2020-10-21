@@ -27,11 +27,11 @@ namespace LiteCRM.Data.Model
         [Column]
         public DateTime? DateEndContract { get; set; }
         [Column]
-        public float? SymmaContract { get; set; }
+        public double SymmaContract { get; set; }
         [Column]
         public string StatusContract { get; set; }
         [Column]
-        public DateTime RegistrDate { get; set; }
+        public DateTime RegistrDate { get; }
 
     }
 }

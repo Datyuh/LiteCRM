@@ -24,52 +24,6 @@ namespace LiteCRM.Views.WindowPages.Pages
         {
             SymmaContract_text.Text = 0.ToString();
             SymmaContract_text.Foreground = Brushes.Gray;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string namberContractClient = NomberContract_text.Text;
-                string fioClient = FIO_text.Text;
-                string nameOrgClient = NameORG_text.Text;
-                string emailClient = Email_text.Text;
-                string phoneClient = Phone_text.Text;
-                string mobilPhoneClient = MobilPhone_text.Text;
-                string typeWorkContract = TypeWork_Combo.Text;
-                var dateStartContractClient = (DateTime?) DateStartContract_date.SelectedDate.Value.Date;
-                var dateEndContractClient = (DateTime?) DateEndContract_date.SelectedDate.Value.Date;
-                var symmaContractClient = Convert.ToDecimal(SymmaContract_text.Text);
-                var statusContract = "В работе";
-
-                using (ApplicationContext dbClient = new ApplicationContext())
-                {
-                    var clients = new Client()
-                    {
-                        NamberContract = namberContractClient,
-                        FIOClient = fioClient,
-                        NameOrg = nameOrgClient,
-                        TypeWork = typeWorkContract,
-                        Email = emailClient,
-                        Phone = phoneClient,
-                        MobilePhone = mobilPhoneClient,
-                        DateStartContract = dateStartContractClient,
-                        DateEndContract = dateEndContractClient,
-                        SymmaContract = (float?) symmaContractClient,
-                        StatusContract = statusContract,
-                    };
-
-                    dbClient.Clients.Add(clients);
-                    dbClient.SaveChanges();
-                    MessageBox.Show("Клиент добавлен в базу", "Сообщение", MessageBoxButton.OK,
-                        MessageBoxImage.Information);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Не все данные были заполнены", "Ошибка", MessageBoxButton.OK,
-                    MessageBoxImage.Exclamation);
-            }
 
         }
 

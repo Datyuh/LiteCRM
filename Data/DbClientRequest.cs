@@ -1,6 +1,7 @@
 ﻿using LiteCRM.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace LiteCRM.Data
@@ -10,70 +11,83 @@ namespace LiteCRM.Data
         ApplicationContext dbClients = new ApplicationContext();
 
         int dt = DateTime.Now.Month;
-        public List<int> IdToGrid()
+       
+        public ObservableCollection<int> IdToGrid()
         {
-            var idToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.id).ToList();
+            var idToGrid = new ObservableCollection<int>(dbClients.Clients.Select(p => p.id).AsParallel());
             return idToGrid;
         }
-        public List<string> NamberConToGrid()
+       
+        public ObservableCollection<string> NamberConToGrid()
         {
-            var namberConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.NamberContract).ToList();
+            var namberConToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.NamberContract).AsParallel());
             return namberConToGrid;
         }
-        public List<string> FIOToGrid()
+       
+        public ObservableCollection<string> FIOToGrid()
         {
-            var fioToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.FIOClient).ToList();
+            var fioToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.FIOClient).AsParallel());
             return fioToGrid;
         }
-        public List<string> NameOrgToGrid()
+       
+        public ObservableCollection<string> NameOrgToGrid()
         {
-            var nameOrgToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.NameOrg).ToList();
+            var nameOrgToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.NameOrg).AsParallel());
             return nameOrgToGrid;
         }
-        public List<string> TypeWorkToGrid()
+       
+        public ObservableCollection<string> TypeWorkToGrid()
         {
-            var typeWorkToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.TypeWork).ToList();
+            var typeWorkToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.TypeWork).AsParallel());
             return typeWorkToGrid;
         }
-        public List<string> EmailToGrid()
+       
+        public ObservableCollection<string> EmailToGrid()
         {
-            var emailToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.Email).ToList();
+            var emailToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.Email).AsParallel());
             return emailToGrid;
         }
-        public List<string> PhoneToGrid()
+       
+        public ObservableCollection<string> PhoneToGrid()
         {
-            var phoneToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.Phone).ToList();
+            var phoneToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.Phone).AsParallel());
             return phoneToGrid;
         }
-        public List<string> MobilPhoneToGrid()
+       
+        public ObservableCollection<string> MobilPhoneToGrid()
         {
-            var mobilPhoneToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.MobilePhone).ToList();
+            var mobilPhoneToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.MobilePhone).AsParallel());
             return mobilPhoneToGrid;
         }
-        public List<DateTime?> DateStartConToGrid()
+        
+        public ObservableCollection<DateTime?> DateStartConToGrid()
         {
-            var dateStartConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.DateStartContract).ToList();
+            var dateStartConToGrid = new ObservableCollection<DateTime?>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.DateStartContract).AsParallel());
             return dateStartConToGrid;
         }
-        public List<DateTime?> DateEndConToGrid()
+        
+        public ObservableCollection<DateTime?> DateEndConToGrid()
         {
-            var dateEndConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.DateEndContract).ToList();
+            var dateEndConToGrid = new ObservableCollection<DateTime?>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.DateEndContract).AsParallel());
             return dateEndConToGrid;
         }
-        public List<float?> SymmaConToGrid()
+
+        public ObservableCollection<double> SymmaConToGrid()
         {
-            var symmaConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.SymmaContract).ToList();
+            var symmaConToGrid = new ObservableCollection<double>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.SymmaContract).AsParallel());
             return symmaConToGrid;
         }
-        public List<string> StatusConToGrid()
+
+        public ObservableCollection<string> StatusConToGrid()
         {
-            var statusConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.StatusContract).ToList();
+            var statusConToGrid = new ObservableCollection<string>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.StatusContract).AsParallel());
             return statusConToGrid;
         }
-        public List<DateTime> RegisterConToGrid()
+
+        public ObservableCollection<DateTime> RegisterConToGrid()
         {
-            var registerConToGrid = dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.RegistrDate);
-            return (List<DateTime>)registerConToGrid;
+            var registerConToGrid = new ObservableCollection<DateTime>(dbClients.Clients.Where(p => p.RegistrDate.Month > dt).Select(p => p.RegistrDate).AsParallel());
+            return registerConToGrid;
         }
 
     }

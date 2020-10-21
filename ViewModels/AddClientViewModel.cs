@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using LiteCRM.Data;
 using LiteCRM.Data.Context;
 using LiteCRM.Data.Model;
 using LiteCRM.Infrastucture.Commands;
@@ -10,7 +13,12 @@ namespace LiteCRM.ViewModels
 {
     class AddClientViewsModel : BaseViewModel
     {
-        private ApplicationContext dbClient = new ApplicationContext();
+        #region Вставка в DataGrid данных
+
+        private ObservableCollection<int> _idFromBase = new ObservableCollection<int>();
+        public ObservableCollection<int> IdFromBase { get => _idFromBase; set => SetRef(ref _idFromBase, value); }
+
+        #endregion
 
         #region Получение данных с TextBox
 
@@ -35,14 +43,14 @@ namespace LiteCRM.ViewModels
         private string _typeWorkContract;
         public string TypeWorkContract { get => _typeWorkContract; set => SetRef(ref _typeWorkContract, value); }
 
-        private DateTime? _dateStartContractClient;
-        public DateTime? DateStartContractClient { get => _dateStartContractClient; set => SetRef(ref _dateStartContractClient, value); }
+        private DateTime _dateStartContractClient = DateTime.Now;
+        public DateTime DateStartContractClient { get => _dateStartContractClient; set => SetRef(ref _dateStartContractClient, value); }
 
-        private DateTime? _dateEndContractClient;
-        public DateTime? DateEndContractClient { get => _dateEndContractClient; set => SetRef(ref _dateEndContractClient, value); }
+        private DateTime _dateEndContractClient = DateTime.Now;
+        public DateTime DateEndContractClient { get => _dateEndContractClient; set => SetRef(ref _dateEndContractClient, value); }
 
-        private float _symmaContractClient;
-        public float SymmaContractClient { get => _symmaContractClient; set => SetRef(ref _symmaContractClient, value); }
+        private string _symmaContractClient;
+        public string SymmaContractClient { get => _symmaContractClient; set => SetRef(ref _symmaContractClient, value); }
 
         private string _statusContract = "В работе";
         public string StatusContract { get => _statusContract; set => SetRef(ref _statusContract, value); }
@@ -56,23 +64,43 @@ namespace LiteCRM.ViewModels
         private bool CanAddClientInBaseCommandExecute(object p) => true;
         private void OnAddClientInBaseCommandExecuted(object p) 
         {
-            Client clients = new Client()
+            try
             {
-                NamberContract = NamberContractClient,
-                FIOClient = FioClient,
-                NameOrg = NameOrgClient,
-                TypeWork = TypeWorkContract,
-                Email = EmailClient,
-                Phone = PhoneClient,
-                MobilePhone = MobilPhoneClient,
-                DateStartContract = DateStartContractClient.Value.Date,
-                DateEndContract = DateEndContractClient.Value.Date,
-                SymmaContract = SymmaContractClient,
-                StatusContract = StatusContract,
-            };
-            dbClient.Clients.Add(clients);
-            dbClient.SaveChanges();
-            MessageBox.Show("Клиент добавлен в базу", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                using ( ApplicationContext dbClient = new ApplicationContext())
+                {
+                    Client clients = new Client()
+                    {
+                        NamberContract = NamberContractClient,
+                        FIOClient = FioClient,
+                        NameOrg = NameOrgClient,
+                        TypeWork = TypeWorkContract,
+                        Email = EmailClient,
+                        Phone = PhoneClient,
+                        MobilePhone = MobilPhoneClient,
+                        DateStartContract = DateStartContractClient,
+                        DateEndContract = DateEndContractClient,
+                        SymmaContract = Convert.ToDouble(SymmaContractClient),
+                        StatusContract = StatusContract,
+                    };
+                    dbClient.Clients.Add(clients);
+                    dbClient.SaveChanges();
+                    MessageBox.Show("Клиент добавлен в базу", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не все данные были заполнены", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
+
+            NamberContractClient = "";
+            FioClient = "";
+            NameOrgClient = "";
+            EmailClient = "";
+            PhoneClient = "";
+            MobilPhoneClient = "";
+            SymmaContractClient = "0";
+
         }
 
         #endregion
@@ -80,6 +108,12 @@ namespace LiteCRM.ViewModels
         public AddClientViewsModel()
         {
             AddClientInBaseCommand = new LambdaCommand(OnAddClientInBaseCommandExecuted, CanAddClientInBaseCommandExecute);
+
+            #region Добавление в грид
+
+            IdFromBase = new DbClientRequest().IdToGrid();
+
+            #endregion
         }
     }
 }

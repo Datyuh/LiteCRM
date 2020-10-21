@@ -171,9 +171,10 @@
             BorderThickness="2"
             FontFamily="Calibri"
             FontSize="14"
+            IsTodayHighlighted="True"
+            SelectedDate="{Binding DateStartContractClient}"
             SelectedDateFormat="Long"
-            Style="{DynamicResource DataContract}" DisplayDate="{Binding DateStartContractClient}"
-             />
+            Style="{DynamicResource DataContract}" />
         <DatePicker
             x:Name="DateEndContract_date"
             Grid.Row="1"
@@ -186,9 +187,9 @@
             BorderThickness="2"
             FontFamily="Calibri"
             FontSize="14"
+            SelectedDate="{Binding DateEndContractClient, Mode=TwoWay}"
             SelectedDateFormat="Long"
-            Style="{DynamicResource DataContract}" DisplayDate="{Binding DateEndContractClient, Mode=TwoWay}"
-            />
+            Style="{DynamicResource DataContract}" />
 
         <TextBox
             x:Name="NomberContract_text"
@@ -294,10 +295,10 @@
             FontSize="14"
             GotFocus="SymmaContract_text_GotFocus"
             Initialized="UserControl_Initialized"
-            LostFocus="SymmaContract_text_LostFocus"
+            LostFocus="SymmaContract_text_LostFocus"            
             Style="{DynamicResource NewTextBoxAddClient}"
             Text="{Binding SymmaContractClient, Mode=TwoWay}"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap"/>
 
         <Button
             Grid.Row="1"
@@ -307,10 +308,11 @@
             VerticalAlignment="Top"
             BorderBrush="#FFFFA200"
             BorderThickness="3"
+            Command="{Binding AddClientInBaseCommand}"
             Content="Добавить"
             FontFamily="Calibri"
             FontSize="20"
-            Style="{DynamicResource DesctopButton}" Command="{Binding AddClientInBaseCommand}" />
+            Style="{DynamicResource DesctopButton}" />
 
         <DataGrid
             x:Name="ContractForLastMonth"
@@ -321,61 +323,62 @@
             BorderBrush="#FFFFA200"
             BorderThickness="2"
             FontFamily="Calibri"
-            FontSize="11">
+            FontSize="11" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    x:Name="id_Column"
-                    Binding="{Binding id}"
+                    x:Name="idColumn"
+                    Binding="{Binding IdFromBase, Mode=TwoWay}"
                     Header="№" />
                 <DataGridTextColumn
-                    x:Name="namberContract_Column"
+                    x:Name="namberContractColumn"
                     Binding="{Binding NamberContract}"
                     Header="Номер договора" />
                 <DataGridTextColumn
-                    x:Name="fio_Column"
+                    x:Name="fioColumn"
                     Binding="{Binding FIOClient}"
                     Header="Ф. И. О. клинта" />
                 <DataGridTextColumn
-                    x:Name="nameOrg_Column"
+                    x:Name="nameOrgColumn"
                     Binding="{Binding NameOrg}"
                     Header="Название организации" />
                 <DataGridTextColumn
-                    x:Name="typeWork_Column"
+                    x:Name="typeWorColumn"
                     Binding="{Binding TypeWork}"
                     Header="Тип работ" />
                 <DataGridTextColumn
-                    x:Name="email_Column"
+                    x:Name="emailColumn"
                     Binding="{Binding Email}"
                     Header="Email" />
                 <DataGridTextColumn
-                    x:Name="phone_Column"
+                    x:Name="phoneColumn"
                     Binding="{Binding Phone}"
                     Header="Телефон/Факс" />
                 <DataGridTextColumn
-                    x:Name="mobilPhone_Column"
+                    x:Name="mobilPhoneColumn"
                     Binding="{Binding MobilePhone}"
                     Header="Моб. телефон" />
                 <DataGridTextColumn
-                    x:Name="dateStartCon_Column"
+                    x:Name="dateStartConColumn"
                     Binding="{Binding DateStartContract}"
                     Header="Дата начала договора" />
                 <DataGridTextColumn
-                    x:Name="dateEndCon_Column"
+                    x:Name="dateEndConColumn"
                     Binding="{Binding DateEndContract}"
                     Header="Дата окончания договора" />
                 <DataGridTextColumn
-                    x:Name="symmaCon_Column"
+                    x:Name="symmaConColumn"
                     Binding="{Binding SymmaContract}"
                     Header="Сумма договора" />
                 <DataGridTextColumn
-                    x:Name="statusCon_Column"
+                    x:Name="statusConColumn"
                     Binding="{Binding StatusContract}"
                     Header="Статус договора" />
                 <DataGridTextColumn
-                    x:Name="registerDate_Column"
+                    x:Name="registerDateColumn"
                     Binding="{Binding RegistrDate}"
                     Header="Дата регистрации" />
             </DataGrid.Columns>
+            
         </DataGrid>
 
         <ComboBox
