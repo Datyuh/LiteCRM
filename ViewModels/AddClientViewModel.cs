@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using LiteCRM.Annotations;
 using LiteCRM.Data;
 using LiteCRM.Data.Context;
 using LiteCRM.Data.Model;
@@ -13,12 +14,15 @@ namespace LiteCRM.ViewModels
 {
     class AddClientViewsModel : BaseViewModel
     {
+        ApplicationContext dbClients = new ApplicationContext();
+        readonly int thisMonth = DateTime.Now.Month;
+
         #region Вставка в DataGrid данных
 
-        private ObservableCollection<int> _idFromBase = new ObservableCollection<int>();
-        public ObservableCollection<int> IdFromBase { get => _idFromBase; set => SetRef(ref _idFromBase, value); }
+        public ObservableCollection<Client> _client;
+        [CanBeNull] public ObservableCollection<Client> ClientFromBase { get => _client; set => SetRef(ref _client, value); }
 
-        #endregion
+       #endregion
 
         #region Получение данных с TextBox
 
@@ -81,9 +85,10 @@ namespace LiteCRM.ViewModels
                         DateEndContract = DateEndContractClient,
                         SymmaContract = Convert.ToDouble(SymmaContractClient),
                         StatusContract = StatusContract,
+                        RegistrDate = DateTime.Now,
                     };
-                    dbClient.Clients.Add(clients);
-                    dbClient.SaveChanges();
+                    dbClient?.Clients.Add(clients);
+                    dbClient?.SaveChanges();
                     MessageBox.Show("Клиент добавлен в базу", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -93,14 +98,14 @@ namespace LiteCRM.ViewModels
 
             }
 
-            NamberContractClient = "";
-            FioClient = "";
-            NameOrgClient = "";
-            EmailClient = "";
-            PhoneClient = "";
-            MobilPhoneClient = "";
+            ClientFromBase = new ObservableCollection<Client>(dbClients.Clients.Where(p => p.RegistrDate.Value.Month == thisMonth));
+            NamberContractClient = null;
+            FioClient = null;
+            NameOrgClient = null;
+            EmailClient = null;
+            PhoneClient = null;
+            MobilPhoneClient = null;
             SymmaContractClient = "0";
-
         }
 
         #endregion
@@ -111,7 +116,7 @@ namespace LiteCRM.ViewModels
 
             #region Добавление в грид
 
-            IdFromBase = new DbClientRequest().IdToGrid();
+            ClientFromBase = new ObservableCollection<Client>(dbClients.Clients.Where(p => p.RegistrDate.Value.Month == thisMonth));
 
             #endregion
         }

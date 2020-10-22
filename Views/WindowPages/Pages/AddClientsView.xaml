@@ -323,16 +323,19 @@
             BorderBrush="#FFFFA200"
             BorderThickness="2"
             FontFamily="Calibri"
-            FontSize="11" AutoGenerateColumns="False">
+            FontSize="11" AutoGenerateColumns="False"
+            AlternatingRowBackground="#FFFFA200"
+            ItemsSource="{Binding ClientFromBase, Mode=TwoWay}"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     x:Name="idColumn"
-                    Binding="{Binding IdFromBase, Mode=TwoWay}"
+                    Binding="{Binding id}"
                     Header="№" />
                 <DataGridTextColumn
                     x:Name="namberContractColumn"
                     Binding="{Binding NamberContract}"
-                    Header="Номер договора" />
+                    Header="№ договора" />
                 <DataGridTextColumn
                     x:Name="fioColumn"
                     Binding="{Binding FIOClient}"
@@ -359,11 +362,11 @@
                     Header="Моб. телефон" />
                 <DataGridTextColumn
                     x:Name="dateStartConColumn"
-                    Binding="{Binding DateStartContract}"
-                    Header="Дата начала договора" />
+                    Binding="{Binding DateStartContract, StringFormat=dd-MM-yyyy}"
+                    Header="Дата начала договора"/>
                 <DataGridTextColumn
                     x:Name="dateEndConColumn"
-                    Binding="{Binding DateEndContract}"
+                    Binding="{Binding DateEndContract, StringFormat=dd-MM-yyyy}"
                     Header="Дата окончания договора" />
                 <DataGridTextColumn
                     x:Name="symmaConColumn"
@@ -373,10 +376,6 @@
                     x:Name="statusConColumn"
                     Binding="{Binding StatusContract}"
                     Header="Статус договора" />
-                <DataGridTextColumn
-                    x:Name="registerDateColumn"
-                    Binding="{Binding RegistrDate}"
-                    Header="Дата регистрации" />
             </DataGrid.Columns>
             
         </DataGrid>

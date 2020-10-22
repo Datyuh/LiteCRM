@@ -8,13 +8,13 @@ namespace LiteCRM.Data.Model
     {
         [Key]
         public int id { get; set; }
-        [Column]
+        [Required]
         public string NamberContract { get; set; }
-        [Column]
+        [Required]
         public string FIOClient { get; set; }
         [Column]
         public string NameOrg { get; set; }
-        [Column]
+        [Required]
         public string TypeWork { get; set; }
         [Column]
         public string Email { get; set; }
@@ -22,16 +22,16 @@ namespace LiteCRM.Data.Model
         public string Phone { get; set; }
         [Column]
         public string MobilePhone { get; set; }
-        [Column]
+        [Required]
         public DateTime? DateStartContract { get; set; }
-        [Column]
+        [Required]
         public DateTime? DateEndContract { get; set; }
-        [Column]
+        [Required]
         public double SymmaContract { get; set; }
         [Column]
         public string StatusContract { get; set; }
-        [Column]
-        public DateTime RegistrDate { get; }
+        [Required]
+        public DateTime? RegistrDate { get; set; }
 
     }
 }
