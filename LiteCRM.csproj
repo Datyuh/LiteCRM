@@ -67,6 +67,7 @@
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\ContractClientsOverdues.cs" />
     <Compile Include="Infrastucture\Commands\CloseApplicationMainCommand.cs" />
     <Compile Include="Infrastucture\Password\HashPassword.cs" />
     <Compile Include="Infrastucture\Password\VerifyHashedPassword.cs" />

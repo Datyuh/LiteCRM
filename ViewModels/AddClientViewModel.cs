@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using LiteCRM.Annotations;
-using LiteCRM.Data;
 using LiteCRM.Data.Context;
 using LiteCRM.Data.Model;
 using LiteCRM.Infrastucture.Commands;

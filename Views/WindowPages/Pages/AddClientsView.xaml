@@ -295,10 +295,10 @@
             FontSize="14"
             GotFocus="SymmaContract_text_GotFocus"
             Initialized="UserControl_Initialized"
-            LostFocus="SymmaContract_text_LostFocus"            
+            LostFocus="SymmaContract_text_LostFocus"
             Style="{DynamicResource NewTextBoxAddClient}"
             Text="{Binding SymmaContractClient, Mode=TwoWay}"
-            TextWrapping="Wrap"/>
+            TextWrapping="Wrap" />
 
         <Button
             Grid.Row="1"
@@ -320,13 +320,14 @@
             Grid.Column="1"
             Grid.ColumnSpan="4"
             Margin="0,308,0,0"
-            BorderBrush="#FFFFA200"
+            AlternatingRowBackground="#FFFFA200"
+            AutoGenerateColumns="False"
+            BorderBrush="#FF68FF30"
             BorderThickness="2"
             FontFamily="Calibri"
-            FontSize="11" AutoGenerateColumns="False"
-            AlternatingRowBackground="#FFFFA200"
-            ItemsSource="{Binding ClientFromBase, Mode=TwoWay}"
-            IsReadOnly="True">
+            FontSize="11"
+            IsReadOnly="True"
+            ItemsSource="{Binding ClientFromBase, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     x:Name="idColumn"
@@ -363,7 +364,7 @@
                 <DataGridTextColumn
                     x:Name="dateStartConColumn"
                     Binding="{Binding DateStartContract, StringFormat=dd-MM-yyyy}"
-                    Header="Дата начала договора"/>
+                    Header="Дата начала договора" />
                 <DataGridTextColumn
                     x:Name="dateEndConColumn"
                     Binding="{Binding DateEndContract, StringFormat=dd-MM-yyyy}"
@@ -377,7 +378,7 @@
                     Binding="{Binding StatusContract}"
                     Header="Статус договора" />
             </DataGrid.Columns>
-            
+
         </DataGrid>
 
         <ComboBox

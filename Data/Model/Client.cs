@@ -23,15 +23,14 @@ namespace LiteCRM.Data.Model
         [Column]
         public string MobilePhone { get; set; }
         [Required]
-        public DateTime? DateStartContract { get; set; }
+        public DateTime DateStartContract { get; set; }
         [Required]
-        public DateTime? DateEndContract { get; set; }
+        public DateTime DateEndContract { get; set; }
         [Required]
         public double SymmaContract { get; set; }
         [Column]
         public string StatusContract { get; set; }
         [Required]
         public DateTime? RegistrDate { get; set; }
-
     }
 }
