@@ -72,6 +72,10 @@
     <Compile Include="Infrastucture\Password\HashPassword.cs" />
     <Compile Include="Infrastucture\Password\VerifyHashedPassword.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\AddUserInBaseModel.cs" />
+    <Compile Include="Views\WindowPages\AddUserInBase.xaml.cs">
+      <DependentUpon>AddUserInBase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WindowPages\Pages\AddClientsView.xaml.cs">
       <DependentUpon>AddClientsView.xaml</DependentUpon>
     </Compile>
@@ -103,6 +107,10 @@
       <DependentUpon>SearchContactsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Components\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowPages\AddUserInBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

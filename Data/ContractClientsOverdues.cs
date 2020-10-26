@@ -10,8 +10,7 @@ namespace LiteCRM.Data
 {
     public class ContractClientsOverdues : BaseViewModel
     {
-         ApplicationContext dbClients = new ApplicationContext();
-        private readonly DateTime thisMonth = DateTime.Now;
+        
         public string NamberContracts { get; set; }
         
         public string NamaeOrgsnization { get; set; }

@@ -226,39 +226,39 @@
             BorderThickness="2"
             FontFamily="Calibri"
             IsReadOnly="True"
-            ItemsSource="{Binding ClientsOverdue, Mode=TwoWay}"
+            ItemsSource="{Binding ContractClientsOverdue, Mode=TwoWay}"
             AlternatingRowBackground="#FF68FF30">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     x:Name="namberContractInWork1"
                     MaxWidth="250"
-                    Binding="{Binding NamberContract}"
+                    Binding="{Binding NamberContracts}"
                     CanUserReorder="False"
                     Header="№ договора"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     x:Name="nameOrgInWork1"
                     MaxWidth="500"
-                    Binding="{Binding NameOrg}"
+                    Binding="{Binding NamaeOrgsnization}"
                     CanUserReorder="False"
                     Header="Наименование организации"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     x:Name="typeWorkInWork1"
                     MaxWidth="300"
-                    Binding="{Binding TypeWork}"
+                    Binding="{Binding TypeWorks}"
                     CanUserReorder="False"
                     Header="Вид работ"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     x:Name="dateEndContractInWork1"
                     MaxWidth="200"
-                    Binding="{Binding DateEndContract, StringFormat=dd-MM-yyyy}"
+                    Binding="{Binding DateEndContracts, StringFormat=dd-MM-yyyy}"
                     CanUserReorder="False"
                     Header="Дата окончания договора"
                     IsReadOnly="True" />
                 <DataGridTextColumn 
-                    Binding="{Binding StatusContract}" 
+                    Binding="{Binding StatysContract}" 
                     CanUserReorder="False"
                     Header="Статус договора" 
                     MaxWidth="210"/>
