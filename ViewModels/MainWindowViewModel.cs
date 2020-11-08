@@ -82,6 +82,7 @@ namespace LiteCRM.ViewModels
 
         public MainWindowViewModel()
         {
+
             #region Использование команд
 
             // Команда на закрытие окон

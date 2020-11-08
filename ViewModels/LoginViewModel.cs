@@ -11,7 +11,7 @@ namespace LiteCRM.ViewModels
 {
     internal class LoginViewModel : BaseViewModel
     {
-        public MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+        public AddUserInBaseModel AddUserInBaseModel = new AddUserInBaseModel();
         #region Переменные для базы данных
 
         private ObservableCollection<string> _loginWithoutBase;
@@ -41,23 +41,23 @@ namespace LiteCRM.ViewModels
             _passWithoutBase = new DbUsersRequest().PassUsers(LoginUserInputWithoutWindow);
             if (_passWithoutBase.Contains(PassUserInputWithoutWindow) && _loginWithoutBase.Contains(LoginUserInputWithoutWindow))
             {
-                MainWindow mainWindow = new MainWindow { DataContext = mainWindowViewModel };
+                MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+                MainWindow mainWindow = new MainWindow {DataContext = mainWindowViewModel};
+                AddUserInBase addUserInBase = new AddUserInBase {DataContext = AddUserInBaseModel};
                 mainWindow.Show();
                 _userRightGetIn = new DbUsersRequest().UserRightGetIn(LoginUserInputWithoutWindow, PassUserInputWithoutWindow);
                 mainWindowViewModel.AddClientDependingUserLoginIsEnable = !_userRightGetIn.Contains("User");
                 mainWindowViewModel.WorkBaseDependingUserLoginIsEnable = !_userRightGetIn.Contains("User");
+
             }
             else MessageBox.Show("Нет пользователя с таким Логином и Паролем", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
-        public ICommand CloseApplicationCommand { get; }
-        private bool CanCloseApplicationCommandExecute(object p) => true;
-        private void OnCloseApplicationCommandExecuted(object p) { Application.Current.Shutdown(); }
-
+     
         #endregion
+
         public LoginViewModel()
         {
-            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
             ButtonClickGetInCommand = new LambdaCommand(OnButtonClickGetInCommandExecuted, CanButtonClickGetInCommandExecute);
         }
     }
